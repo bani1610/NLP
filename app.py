@@ -166,6 +166,7 @@ print("=" * 50)
 print("✅ Sistem siap digunakan!")
 print("=" * 50)
 
+GROQ_API_KEY  = "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"
 
 # ============================================================
 # GRADIO UI
