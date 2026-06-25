@@ -22,7 +22,7 @@ from langchain_core.output_parsers import StrOutputParser
 # ============================================================
 # KONFIGURASI
 # ============================================================
-PDF_DIR         = "dataset_bpjs"
+PDF_DIR         = "dataset"
 FAISS_INDEX     = "faiss_index_bpjs"
 EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
@@ -53,6 +53,12 @@ def build_vectorstore():
     documents = loader.load()
     print(f"   📄 Total halaman terbaca : {len(documents)}")
 
+    if not documents:
+        raise RuntimeError(
+            f"Tidak ada PDF yang terbaca dari folder '{PDF_DIR}'. "
+            "Pastikan file PDF tersedia di dataset/ dan nama folder benar."
+        )
+
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=CHUNK_SIZE,
         chunk_overlap=CHUNK_OVERLAP,
@@ -60,6 +66,12 @@ def build_vectorstore():
     )
     texts = splitter.split_documents(documents)
     print(f"   🔪 Total chunks          : {len(texts)}")
+
+    if not texts:
+        raise RuntimeError(
+            f"PDF di folder '{PDF_DIR}' tidak menghasilkan chunk teks. "
+            "Periksa apakah file PDF valid dan berisi teks yang dapat diekstrak."
+        )
 
     vectorstore = FAISS.from_documents(texts, embeddings)
     vectorstore.save_local(FAISS_INDEX)
