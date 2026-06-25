@@ -1,0 +1,21 @@
+# ============================================================
+# KONFIGURASI TERPUSAT — BPJS Care Assistant
+# ============================================================
+
+pdf_dir: "dataset"
+faiss_index: "faiss_index_bpjs"
+
+embedding:
+  model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
+llm:
+  model: "llama-3.3-70b-versatile"
+  temperature: 0.1
+  max_tokens: 512
+
+chunking:
+  chunk_size: 800
+  chunk_overlap: 150
+
+retrieval:
+  top_k: 5

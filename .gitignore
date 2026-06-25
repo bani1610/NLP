@@ -1,0 +1,11 @@
+
+# Environment & secrets
+.env
+
+# FAISS index (generated)
+faiss_index_bpjs/
+
+# Python cache
+__pycache__/
+*.pyc
+.venv/

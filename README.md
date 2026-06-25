@@ -5,7 +5,7 @@ colorFrom: blue
 colorTo: green
 sdk: gradio
 sdk_version: 5.33.0
-app_file: app.py
+app_file: main.py
 pinned: false
 license: mit
 hardware: a10g-small
@@ -122,17 +122,36 @@ Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kes
 
 ```
 chatbot_bpjs/
-├── app.py                     # Kode utama aplikasi
-├── requirements.txt           # Dependensi Python
+├── main.py                    # Entry point
+├── config.yaml                # Konfigurasi terpusat (model, chunk size, dll)
+├── .env                       # API keys (lokal, tidak di-push)
+├── requirements.txt
+├── README.md
 ├── generate_report.py         # Script generate laporan PDF
-├── Laporan_NLP_BPJS_Care_Assistant.pdf  # Laporan proyek (PDF)
-├── README.md                  # Dokumentasi
-└── dataset/
-    ├── ps82-2018.pdf
-    ├── peraturan-bpjs-kesehatan-no-1-tahun-2024.pdf
-    ├── peraturan-bpjs-kesehatan-no-2-tahun-2024.pdf
-    ├── peraturan-bpjs-kesehatan-no-3-tahun-2024 (2).pdf
-    └── 4bd28c6ea8f022040f6eb93cfcd6e723.pdf
+├── Laporan_NLP_BPJS_Care_Assistant.pdf
+├── dataset/
+│   ├── ps82-2018.pdf
+│   ├── peraturan-bpjs-kesehatan-no-1-tahun-2024.pdf
+│   ├── peraturan-bpjs-kesehatan-no-2-tahun-2024.pdf
+│   ├── peraturan-bpjs-kesehatan-no-3-tahun-2024 (2).pdf
+│   └── 4bd28c6ea8f022040f6eb93cfcd6e723.pdf
+└── src/
+    ├── ingestion/
+    │   └── loader.py          # PyPDFDirectoryLoader
+    ├── chunking/
+    │   └── chunker.py         # RecursiveCharacterTextSplitter
+    ├── embeddings/
+    │   └── embedder.py        # HuggingFaceEmbeddings (Teknologi 2)
+    ├── vectordb/
+    │   └── vector_store.py    # FAISS build/load/save (Teknologi 1)
+    ├── retrieval/
+    │   └── retriever.py       # RAG chain builder
+    ├── prompts/
+    │   └── prompt_templates.py # System prompt + kill_filler()
+    ├── llm/
+    │   └── llm_client.py      # Groq LLM client
+    └── ui/
+        └── gradio_app.py      # Gradio Blocks UI (3 tab)
 ```
 
 ## 🚀 Setup & Deployment
@@ -146,7 +165,8 @@ GROQ_API_KEY = <your_groq_api_key>
 ### Install & Run Lokal
 ```bash
 pip install -r requirements.txt
-GROQ_API_KEY=<key> python app.py
+# Isi .env dengan GROQ_API_KEY kamu
+GROQ_API_KEY=<key> python main.py
 ```
 
 ## 👥 Tim Pengembang
