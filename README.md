@@ -123,12 +123,11 @@ Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kes
 ```
 chatbot_bpjs/
 ├── main.py                    # Entry point
-├── config.yaml                # Konfigurasi terpusat (model, chunk size, dll)
-├── .env                       # API keys (lokal, tidak di-push)
-├── requirements.txt
+├── config.yaml                # Konfigurasi terpusat
+├── requirements.txt           # Dependensi Python
 ├── README.md
-├── generate_report.py         # Script generate laporan PDF
-├── Laporan_NLP_BPJS_Care_Assistant.pdf
+├── docs/
+│   └── Laporan_NLP_BPJS_Care_Assistant.pdf
 ├── dataset/
 │   ├── ps82-2018.pdf
 │   ├── peraturan-bpjs-kesehatan-no-1-tahun-2024.pdf
