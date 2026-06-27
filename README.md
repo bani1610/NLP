@@ -1,6 +1,5 @@
 ---
 title: BPJS Care Assistant
-emoji: 🏥
 colorFrom: blue
 colorTo: green
 sdk: gradio
@@ -11,18 +10,18 @@ license: mit
 hardware: a10g-small
 ---
 
-# 🏥 BPJS Care Assistant — RAG Chatbot
+# BPJS Care Assistant — RAG Chatbot
 
 Chatbot berbasis **Retrieval-Augmented Generation (RAG)** untuk menjawab pertanyaan seputar regulasi BPJS Kesehatan secara akurat berdasarkan dokumen resmi.
 
-## 📌 Deskripsi
+## Deskripsi
 
 Sistem ini dibangun sebagai proyek akhir mata kuliah **Natural Language Processing (NLP)** di **STT Nurul Fikri**, dengan tujuan membantu masyarakat memahami regulasi BPJS Kesehatan tanpa harus membaca dokumen hukum yang panjang dan rumit.
 
 - **Domain:** Kesehatan & Pelayanan Publik Pemerintah
 - **Jenis Aplikasi:** Chatbot + RAG sederhana
 
-## 🗂️ Dataset / Sumber Dokumen
+## Dataset / Sumber Dokumen
 
 | Dokumen | Keterangan | Halaman |
 |---|---|---|
@@ -34,7 +33,7 @@ Sistem ini dibangun sebagai proyek akhir mata kuliah **Natural Language Processi
 
 **Total: ±470 halaman** dokumen Bahasa Indonesia resmi
 
-## 🔧 Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 ### Teknologi 1 — RAG (LangChain + FAISS)
 
@@ -62,7 +61,7 @@ Sistem ini dibangun sebagai proyek akhir mata kuliah **Natural Language Processi
 | **UI** | Gradio 5.33.0 |
 | **Deploy** | HuggingFace Spaces (A10G GPU small) |
 
-## 🏗️ Arsitektur Pipeline RAG
+## Arsitektur Pipeline RAG
 
 ```
 PDF Dokumen Regulasi BPJS
@@ -72,10 +71,10 @@ PDF Dokumen Regulasi BPJS
 RecursiveCharacterTextSplitter
   (chunk_size=800, overlap=150)
         ↓
-HuggingFaceEmbeddings          ← Teknologi 2 (Transformer)
+HuggingFaceEmbeddings          <- Teknologi 2 (Transformer)
   (paraphrase-multilingual-MiniLM-L12-v2)
         ↓
-   FAISS Vector Store           ← Teknologi 1 (RAG)
+   FAISS Vector Store           <- Teknologi 1 (RAG)
         ↓
   Retriever (Top-K=5)
         ↓
@@ -89,7 +88,7 @@ HuggingFaceEmbeddings          ← Teknologi 2 (Transformer)
       Jawaban Faktual
 ```
 
-## 📊 Hasil Evaluasi
+## Hasil Evaluasi
 
 Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kesehatan:
 
@@ -104,21 +103,21 @@ Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kes
 
 | Pertanyaan | Status |
 |---|---|
-| Apa itu BPJS Kesehatan? | ✅ Akurat |
-| Berapa denda keterlambatan iuran? | ✅ Akurat |
-| Apakah operasi plastik ditanggung? | ✅ Akurat |
-| Bagaimana prosedur kondisi darurat? | ✅ Akurat |
-| Berapa iuran kelas 1, 2, 3? | ⚠️ Ditolak (out-of-scope, benar) |
+| Apa itu BPJS Kesehatan? | Akurat |
+| Berapa denda keterlambatan iuran? | Akurat |
+| Apakah operasi plastik ditanggung? | Akurat |
+| Bagaimana prosedur kondisi darurat? | Akurat |
+| Berapa iuran kelas 1, 2, 3? | Ditolak (out-of-scope, benar) |
 
-## 💡 Fitur Unggulan
+## Fitur Unggulan
 
-- ✅ **Anti-halusinasi dua lapis** — prompt engineering ketat + post-processing `kill_filler()`
-- ✅ **Multilingual embedding** — mendukung Bahasa Indonesia
-- ✅ **Tiga tab UI** — Chatbot, Evaluasi Q&A, dan Penjelasan Teknologi
-- ✅ **Persistent FAISS index** — index dibangun sekali, dimuat dari disk
-- ✅ **Zero GPU deployment** — menggunakan Groq API (LPU), bukan GPU lokal
+- **Anti-halusinasi dua lapis** — prompt engineering ketat + post-processing `kill_filler()`
+- **Multilingual embedding** — mendukung Bahasa Indonesia
+- **Tiga tab UI** — Chatbot, Evaluasi Q&A, dan Penjelasan Teknologi
+- **Persistent FAISS index** — index dibangun sekali, dimuat dari disk
+- **Zero GPU deployment** — menggunakan Groq API (LPU), bukan GPU lokal
 
-## 🗂️ Struktur Proyek
+## Struktur Proyek
 
 ```
 chatbot_bpjs/
@@ -126,8 +125,6 @@ chatbot_bpjs/
 ├── config.yaml                # Konfigurasi terpusat
 ├── requirements.txt           # Dependensi Python
 ├── README.md
-├── docs/
-│   └── Laporan_NLP_BPJS_Care_Assistant.pdf
 ├── dataset/
 │   ├── ps82-2018.pdf
 │   ├── peraturan-bpjs-kesehatan-no-1-tahun-2024.pdf
@@ -153,7 +150,7 @@ chatbot_bpjs/
         └── gradio_app.py      # Gradio Blocks UI (3 tab)
 ```
 
-## 🚀 Setup & Deployment
+## Setup & Deployment
 
 ### Environment Variable
 Di HuggingFace Spaces → Settings → Secrets:
@@ -168,6 +165,6 @@ pip install -r requirements.txt
 GROQ_API_KEY=<key> python main.py
 ```
 
-## 👥 Tim Pengembang
+## Tim Pengembang
 
 Proyek NLP — STT Nurul Fikri

@@ -1,7 +1,3 @@
-# ============================================================
-# KONFIGURASI TERPUSAT — BPJS Care Assistant
-# ============================================================
-
 pdf_dir: "dataset"
 faiss_index: "faiss_index_bpjs"
 

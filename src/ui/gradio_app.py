@@ -11,61 +11,61 @@ QA_EVAL_DATA = [
         "no": "1",
         "pertanyaan": "Apa itu BPJS Kesehatan?",
         "jawaban": "BPJS Kesehatan adalah badan hukum publik yang dibentuk untuk menyelenggarakan program Jaminan Kesehatan Nasional (JKN) berdasarkan Undang-Undang No. 24 Tahun 2011.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "2",
         "pertanyaan": "Berapa besar denda keterlambatan pembayaran iuran?",
         "jawaban": "Denda keterlambatan adalah 2,5% per bulan dari total biaya pelayanan yang ditagihkan, dengan maksimal 30% dari total biaya.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "3",
         "pertanyaan": "Apa saja yang ditanggung BPJS dalam program Prolanis?",
         "jawaban": "Prolanis mencakup konsultasi medis, pemeriksaan laboratorium, obat Formularium Nasional, dan edukasi kesehatan untuk Diabetes Melitus Tipe 2 dan Hipertensi.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "4",
         "pertanyaan": "Bagaimana prosedur mendaftarkan bayi baru lahir?",
         "jawaban": "Bayi baru lahir wajib didaftarkan paling lambat 28 hari setelah lahir di kantor BPJS terdekat dengan melampirkan akta kelahiran dan kartu keluarga.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "5",
         "pertanyaan": "Apakah operasi plastik ditanggung BPJS?",
         "jawaban": "Operasi plastik kosmetik/estetika TIDAK ditanggung. Yang ditanggung hanya bedah plastik rekonstruktif akibat kecelakaan atau kelainan bawaan.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "6",
         "pertanyaan": "Bagaimana prosedur jika kondisi gawat darurat?",
         "jawaban": "Dalam kondisi gawat darurat, peserta dapat langsung ke IGD fasilitas kesehatan terdekat tanpa rujukan, termasuk fasilitas non-jaringan BPJS.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "7",
         "pertanyaan": "Berapa lama masa tunggu peserta baru?",
         "jawaban": "Peserta PBPU yang baru mendaftar memiliki masa tunggu 14 hari sebelum dapat menggunakan manfaat rawat inap.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "8",
         "pertanyaan": "Apa itu peserta PBI?",
         "jawaban": "PBI (Penerima Bantuan Iuran) adalah peserta JKN yang iurannya dibayarkan pemerintah, terdiri dari fakir miskin dan orang tidak mampu.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "9",
         "pertanyaan": "Apakah layanan gigi ditanggung BPJS?",
         "jawaban": "BPJS menanggung pelayanan gigi dasar (pencabutan, penambalan, karang gigi) di FKTP. Perawatan gigi estetika tidak ditanggung.",
-        "status": "✅ Akurat",
+        "status": "Akurat",
     },
     {
         "no": "10",
         "pertanyaan": "Berapa iuran BPJS untuk kelas 1, 2, dan 3?",
         "jawaban": "Informasi tersebut tidak tercatat dalam dokumen regulasi BPJS yang tersedia dalam sistem ini.",
-        "status": "⚠️ Out-of-scope (ditolak dengan benar)",
+        "status": "Out-of-scope (ditolak dengan benar)",
     },
 ]
 
@@ -95,17 +95,17 @@ def build_ui(rag_chain) -> gr.Blocks:
     with gr.Blocks(theme=gr.themes.Soft(), title="BPJS Care Assistant") as demo:
         gr.Markdown(
             """
-            # 🏥 BPJS Care Assistant
+            # BPJS Care Assistant
             Asisten virtual berbasis **RAG (Retrieval-Augmented Generation)** untuk menjawab pertanyaan
             seputar regulasi BPJS Kesehatan secara akurat dari dokumen resmi.
 
-            📄 **Sumber:** Perpres 82/2018 · Perban No.1/2024 · Perban No.2/2024 · Perban No.3/2024 · Buku Saku JKN-KIS
+            **Sumber:** Perpres 82/2018 · Perban No.1/2024 · Perban No.2/2024 · Perban No.3/2024 · Buku Saku JKN-KIS
             """
         )
 
         with gr.Tabs():
             # ── TAB 1: CHATBOT ───────────────────────────────────────────────
-            with gr.TabItem("💬 Chatbot"):
+            with gr.TabItem("Chatbot"):
                 gr.ChatInterface(
                     fn=chatbot_bpjs,
                     examples=[
@@ -120,7 +120,7 @@ def build_ui(rag_chain) -> gr.Blocks:
                 )
 
             # ── TAB 2: EVALUASI Q&A ──────────────────────────────────────────
-            with gr.TabItem("📊 Evaluasi Q&A"):
+            with gr.TabItem("Evaluasi Q&A"):
                 gr.Markdown("""
                 ## Hasil Evaluasi Sistem
                 Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kesehatan.
@@ -147,7 +147,7 @@ def build_ui(rag_chain) -> gr.Blocks:
                 )
 
             # ── TAB 3: TEKNOLOGI ─────────────────────────────────────────────
-            with gr.TabItem("⚙️ Teknologi"):
+            with gr.TabItem("Teknologi"):
                 gr.Markdown("""
                 ## Teknologi yang Digunakan
 
