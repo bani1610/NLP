@@ -1,4 +1,4 @@
----
+<!-- ---
 title: BPJS Care Assistant
 colorFrom: blue
 colorTo: green
@@ -8,7 +8,7 @@ app_file: main.py
 pinned: false
 license: mit
 hardware: a10g-small
----
+--- -->
 
 # BPJS Care Assistant — RAG Chatbot
 
