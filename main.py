@@ -8,8 +8,10 @@ import sys
 import yaml
 from dotenv import load_dotenv
 
-# ── Load .env untuk development lokal ─────────────────────────────────────────
 load_dotenv()
+
+# Use it like this:
+api_key = os.getenv("GROQ_API_KEY")
 
 # ── Load konfigurasi dari config.yaml ─────────────────────────────────────────
 with open("config.yaml", "r") as f:
