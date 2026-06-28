@@ -10,8 +10,6 @@ __pycache__/
 *.pyo
 .venv/
 
-# Dev-only scripts
-generate_report.py
 
 # OS files
 .DS_Store

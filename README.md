@@ -19,8 +19,7 @@ Chatbot berbasis **Retrieval-Augmented Generation (RAG)** untuk menjawab pertany
 ---
 
 ## Gambaran Umum
-
-Sistem ini dibangun sebagai proyek akhir mata kuliah **Natural Language Processing (NLP)** di **STT Nurul Fikri**, dengan tujuan membantu masyarakat memahami regulasi BPJS Kesehatan tanpa harus membaca dokumen hukum yang panjang dan rumit.
+Projek AKhir Matakuliah NLP
 
 - **Domain:** Kesehatan & Pelayanan Publik Pemerintah
 - **Jenis Aplikasi:** Chatbot + RAG sederhana
@@ -420,7 +419,3 @@ GROQ_API_KEY=<key> python main.py
 ```
 
 ---
-
-## Tim Pengembang
-
-Proyek NLP — STT Nurul Fikri
