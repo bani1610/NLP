@@ -5,7 +5,8 @@ langchain-text-splitters==0.3.8
 faiss-cpu==1.11.0
 pypdf==5.6.0
 sentence-transformers==4.1.0
-gradio==5.33.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
 huggingface_hub==0.32.4
 pyyaml==6.0.2
 python-dotenv==1.0.1

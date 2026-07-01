@@ -14,3 +14,8 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Foto lokal — HF Spaces tidak menerima binary besar via git biasa
+frontend/images/*.png
+frontend/images/*.jpg
+frontend/images/*.jpeg

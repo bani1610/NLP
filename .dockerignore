@@ -1,0 +1,11 @@
+.env
+.venv
+__pycache__
+*.pyc
+*.pyo
+.git
+.gitignore
+.DS_Store
+Thumbs.db
+BPJS_Care_Assistant_Colab.ipynb
+prd.md

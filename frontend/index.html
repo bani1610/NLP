@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BPJS Care Assistant — Chatbot AI berbasis RAG untuk menjawab pertanyaan seputar regulasi BPJS Kesehatan secara akurat dari dokumen resmi." />
+  <meta property="og:title" content="BPJS Care Assistant" />
+  <meta property="og:description" content="Tanya regulasi BPJS Kesehatan dengan AI yang cerdas dan akurat." />
+  <meta property="og:type" content="website" />
+  <title>BPJS Care Assistant — AI Chatbot Regulasi BPJS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <span>BPJS Care</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#tentang" class="nav-link">Tentang</a>
+        <a href="#fitur" class="nav-link">Fitur</a>
+        <a href="#cara-kerja" class="nav-link">Cara Kerja</a>
+        <a href="#tim" class="nav-link">Tim</a>
+        <button class="nav-cta" id="navCta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Mulai Chat
+        </button>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#tentang" class="mobile-nav-link">Tentang</a>
+    <a href="#fitur" class="mobile-nav-link">Fitur</a>
+    <a href="#cara-kerja" class="mobile-nav-link">Cara Kerja</a>
+    <a href="#tim" class="mobile-nav-link">Tim</a>
+    <button class="mobile-cta" id="mobileCta">Mulai Chat Sekarang</button>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       HERO
+  ════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <!-- Decorative blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Sistem AI Siap Digunakan
+      </div>
+
+      <h1 class="hero-title">
+        Tanya Regulasi BPJS<br/>
+        <span class="gradient-text">Dapat Jawaban Akurat</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Asisten virtual berbasis <strong>Retrieval-Augmented Generation (RAG)</strong> yang menjawab
+        pertanyaan seputar regulasi BPJS Kesehatan langsung dari dokumen resmi —
+        cepat, akurat, dan tanpa halusinasi.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-primary" id="heroCta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Coba Sekarang — Gratis
+        </button>
+        <a href="#cara-kerja" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Lihat Cara Kerja
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">90%</span>
+          <span class="stat-label">Akurasi Jawaban</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">0%</span>
+          <span class="stat-label">Halusinasi</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">470+</span>
+          <span class="stat-label">Halaman Dokumen</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">2–4s</span>
+          <span class="stat-label">Rata-rata Respons</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Chat Preview -->
+    <div class="hero-preview">
+      <div class="preview-window">
+        <div class="preview-topbar">
+          <div class="preview-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="preview-title">BPJS Care Assistant</span>
+          <div class="preview-status">
+            <span class="preview-status-dot"></span>Online
+          </div>
+        </div>
+        <div class="preview-body">
+          <div class="preview-msg bot">
+            <div class="preview-avatar">AI</div>
+            <div class="preview-bubble">Halo! Saya siap membantu pertanyaan seputar regulasi BPJS Kesehatan. Apa yang ingin Anda ketahui? 😊</div>
+          </div>
+          <div class="preview-msg user">
+            <div class="preview-bubble">Berapa denda keterlambatan pembayaran iuran?</div>
+          </div>
+          <div class="preview-msg bot">
+            <div class="preview-avatar">AI</div>
+            <div class="preview-bubble">Denda keterlambatan adalah <strong>2,5% per bulan</strong> dari total biaya pelayanan, dengan maksimal <strong>30%</strong> dari total biaya yang ditagihkan.</div>
+          </div>
+          <div class="preview-typing">
+            <div class="preview-avatar">AI</div>
+            <div class="preview-typing-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       ABOUT / TENTANG
+  ════════════════════════════════════ -->
+  <section class="section" id="tentang">
+    <div class="section-container">
+      <div class="section-label">Tentang Aplikasi</div>
+      <h2 class="section-title">Solusi Cerdas untuk Informasi BPJS</h2>
+      <p class="section-subtitle">
+        BPJS Care Assistant dibangun sebagai Proyek Akhir Mata Kuliah NLP dengan teknologi AI mutakhir
+        untuk membantu masyarakat mengakses informasi regulasi BPJS Kesehatan secara mudah dan akurat.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon about-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Berbasis Dokumen Resmi</h3>
+          <p>Jawaban langsung bersumber dari 5 dokumen regulasi BPJS resmi — Perpres 82/2018, Perban 1-3/2024, dan Buku Saku JKN-KIS. Bukan opini, bukan asumsi.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon about-icon-teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>AI Anti-Halusinasi</h3>
+          <p>Sistem dua lapis: System Prompt ketat + post-processor <code>kill_filler()</code> memastikan chatbot tidak pernah memberikan informasi yang tidak ada di dokumen sumber.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon about-icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Respons Super Cepat</h3>
+          <p>Didukung <strong>Groq LPU</strong> (Language Processing Unit) yang mengeksekusi model Llama-3.3-70B dengan kecepatan rata-rata 2–4 detik per respons.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon about-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Untuk Semua Orang</h3>
+          <p>Dirancang untuk peserta BPJS, petugas puskesmas, mahasiswa, dan siapa saja yang butuh informasi regulasi BPJS dengan cara yang mudah dipahami.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FITUR
+  ════════════════════════════════════ -->
+  <section class="section section-alt" id="fitur">
+    <div class="section-container">
+      <div class="section-label">Fitur Unggulan</div>
+      <h2 class="section-title">Apa yang Bisa Dilakukan?</h2>
+      <p class="section-subtitle">Tanyakan berbagai hal seputar regulasi BPJS Kesehatan dan dapatkan jawaban yang tepat sasaran.</p>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📋</div>
+          <div class="feature-content">
+            <h4>Prosedur & Administrasi</h4>
+            <p>Pendaftaran peserta, bayi baru lahir, perubahan data, dan administrasi kepesertaan.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💊</div>
+          <div class="feature-content">
+            <h4>Manfaat & Layanan</h4>
+            <p>Apa saja yang ditanggung, pengecualian layanan, program Prolanis, dan rawat inap.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🚨</div>
+          <div class="feature-content">
+            <h4>Kondisi Gawat Darurat</h4>
+            <p>Prosedur IGD, fasilitas non-jaringan, dan penanganan kondisi darurat.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <div class="feature-content">
+            <h4>Iuran & Denda</h4>
+            <p>Informasi denda keterlambatan, aturan pembayaran, dan kategori peserta PBI.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🦷</div>
+          <div class="feature-content">
+            <h4>Layanan Spesifik</h4>
+            <p>Gigi, mata, KB, persalinan, dan layanan khusus lainnya yang diatur regulasi.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-content">
+            <h4>Rujukan & Faskes</h4>
+            <p>Sistem rujukan FKTP ke FKTL, jenis faskes, dan alur pelayanan kesehatan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CARA KERJA
+  ════════════════════════════════════ -->
+  <section class="section" id="cara-kerja">
+    <div class="section-container">
+      <div class="section-label">Cara Kerja</div>
+      <h2 class="section-title">Teknologi di Balik Jawaban Akurat</h2>
+      <p class="section-subtitle">Sistem RAG (Retrieval-Augmented Generation) memastikan setiap jawaban selalu bersumber dari dokumen regulasi resmi.</p>
+
+      <div class="pipeline-flow">
+        <div class="flow-step">
+          <div class="flow-number">01</div>
+          <div class="flow-icon flow-icon-indigo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4>Kamu Bertanya</h4>
+          <p>Ketikkan pertanyaan dalam Bahasa Indonesia tentang regulasi BPJS Kesehatan.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">02</div>
+          <div class="flow-icon flow-icon-blue">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+          </div>
+          <h4>AI Mencari Konteks</h4>
+          <p>Model Transformer mengubah pertanyaanmu menjadi vektor dan mencari 5 bagian dokumen paling relevan di FAISS index.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">03</div>
+          <div class="flow-icon flow-icon-teal">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h4>LLM Merangkai Jawaban</h4>
+          <p>Groq LLM (Llama-3.3-70B) menghasilkan jawaban berdasarkan konteks dokumen yang ditemukan — bukan dari memori model.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">04</div>
+          <div class="flow-icon flow-icon-green">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h4>Jawaban Terverifikasi</h4>
+          <p>Post-processor menyaring kalimat basa-basi dan halusinasi. Kamu mendapat jawaban bersih, faktual, dan akurat.</p>
+        </div>
+      </div>
+
+      <!-- Tech Stack Pills -->
+      <div class="tech-pills">
+        <span class="tech-pill">LangChain</span>
+        <span class="tech-pill">FAISS</span>
+        <span class="tech-pill">HuggingFace</span>
+        <span class="tech-pill">Groq API</span>
+        <span class="tech-pill">Llama-3.3-70B</span>
+        <span class="tech-pill">FastAPI</span>
+        <span class="tech-pill">MiniLM-L12-v2</span>
+        <span class="tech-pill">Python</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       TIM DEVELOPER
+  ════════════════════════════════════ -->
+  <section class="section section-alt" id="tim">
+    <div class="section-container">
+      <div class="section-label">Tim Developer</div>
+      <h2 class="section-title">Orang-orang di Balik Proyek</h2>
+      <p class="section-subtitle">Proyek Akhir Mata Kuliah Natural Language Processing — Mahasiswa yang membangun solusi nyata untuk masyarakat.</p>
+
+      <div class="team-grid team-grid-5" id="teamGrid">
+
+        <!-- TEAM MEMBER 1 -->
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg,#1a6fc4,#00c2a8)">
+            <span>S</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Sholahuddin Robbani</h3>
+            <span class="team-role">AI/ML Engineer</span>
+            <p class="team-desc">Bertanggung jawab atas pipeline RAG, embedding model, dan integrasi LangChain + FAISS.</p>
+            <div class="team-links">
+              <a href="#" class="team-link" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+              <a href="#" class="team-link" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEAM MEMBER 2 -->
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg,#6e40c9,#8957e5)">
+            <!-- Ganti dengan: <img src="assets/foto-anggota2.jpg" alt="Nama Anggota 2" /> -->
+            <span>B</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Nama Anggota 2</h3>
+            <span class="team-role">NLP Researcher</span>
+            <p class="team-desc">Merancang arsitektur prompt, sistem anti-halusinasi dua lapis, dan evaluasi kualitas output chatbot.</p>
+            <div class="team-links">
+              <a href="#" class="team-link" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+              <a href="#" class="team-link" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEAM MEMBER 3 -->
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg,#00c2a8,#00a896)">
+            <!-- Ganti dengan: <img src="assets/foto-anggota3.jpg" alt="Nama Anggota 3" /> -->
+            <span>C</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Nama Anggota 3</h3>
+            <span class="team-role">Data Engineer</span>
+            <p class="team-desc">Menangani ingestion dokumen PDF, chunking teks, dan pembangunan FAISS vector index dari regulasi BPJS.</p>
+            <div class="team-links">
+              <a href="#" class="team-link" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+              <a href="#" class="team-link" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEAM MEMBER 4 -->
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg,#d29922,#e3b341)">
+            <!-- Ganti dengan: <img src="assets/foto-anggota4.jpg" alt="Nama Anggota 4" /> -->
+            <span>D</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Nama Anggota 4</h3>
+            <span class="team-role">Full-stack Developer</span>
+            <p class="team-desc">Membangun REST API dengan FastAPI, antarmuka web modern, dan integrasi backend-frontend yang mulus.</p>
+            <div class="team-links">
+              <a href="#" class="team-link" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+              <a href="#" class="team-link" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEAM MEMBER 5 -->
+        <div class="team-card">
+          <div class="team-avatar" style="background: linear-gradient(135deg,#f85149,#d73a49)">
+            <!-- Ganti dengan: <img src="assets/foto-anggota5.jpg" alt="Nama Anggota 5" /> -->
+            <span>E</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Nama Anggota 5</h3>
+            <span class="team-role">Peneliti & Dokumentasi</span>
+            <p class="team-desc">Mengumpulkan dataset regulasi BPJS, menyusun laporan penelitian, dan mendokumentasikan seluruh sistem.</p>
+            <div class="team-links">
+              <a href="#" class="team-link" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+              <a href="#" class="team-link" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- University Badge -->
+      <div class="uni-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Proyek Akhir Mata Kuliah Natural Language Processing · 2026
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <span>BPJS Care Assistant</span>
+        </div>
+        <p>Chatbot AI berbasis RAG untuk regulasi BPJS Kesehatan. Akurat, cepat, dan terpercaya.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navigasi</h5>
+          <a href="#tentang">Tentang</a>
+          <a href="#fitur">Fitur</a>
+          <a href="#cara-kerja">Cara Kerja</a>
+          <a href="#tim">Tim</a>
+        </div>
+        <div class="footer-col">
+          <h5>Sumber Dokumen</h5>
+          <a href="#">Perpres 82/2018</a>
+          <a href="#">Perban 1/2024</a>
+          <a href="#">Perban 2/2024</a>
+          <a href="#">Perban 3/2024</a>
+          <a href="#">Buku Saku JKN-KIS</a>
+        </div>
+        <div class="footer-col">
+          <h5>Teknologi</h5>
+          <a href="https://python.langchain.com" target="_blank">LangChain</a>
+          <a href="https://github.com/facebookresearch/faiss" target="_blank">FAISS</a>
+          <a href="https://groq.com" target="_blank">Groq API</a>
+          <a href="https://fastapi.tiangolo.com" target="_blank">FastAPI</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BPJS Care Assistant · Proyek NLP · MIT License</p>
+      <p>Informasi bersifat referensi. Selalu konfirmasi ke kantor BPJS resmi.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════
+       FLOATING CHAT BUTTON
+  ════════════════════════════════════ -->
+  <button class="fab" id="fabBtn" aria-label="Buka chatbot BPJS">
+    <div class="fab-icon fab-open">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <div class="fab-icon fab-close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+    <div class="fab-tooltip">Tanya BPJS Sekarang</div>
+    <div class="fab-pulse"></div>
+  </button>
+
+  <!-- ═══════════════════════════════════
+       CHAT POPUP
+  ════════════════════════════════════ -->
+  <div class="chat-popup" id="chatPopup" aria-hidden="true">
+    <!-- Popup Header -->
+    <div class="popup-header">
+      <div class="popup-header-info">
+        <div class="popup-avatar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="popup-title">BPJS Care Assistant</div>
+          <div class="popup-subtitle">
+            <span class="popup-status-dot" id="popupStatusDot"></span>
+            <span id="popupStatusText">Memuat...</span>
+          </div>
+        </div>
+      </div>
+      <div class="popup-header-actions">
+        <button class="popup-action-btn" id="popupClearBtn" title="Hapus percakapan" aria-label="Hapus percakapan">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
+        <button class="popup-action-btn popup-close-btn" id="popupCloseBtn" title="Tutup" aria-label="Tutup chat">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="popup-body" id="popupBody" role="log" aria-live="polite">
+      <!-- Welcome -->
+      <div class="popup-welcome" id="popupWelcome">
+        <div class="popup-welcome-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <p>Halo! 👋 Saya siap menjawab pertanyaan seputar <strong>regulasi BPJS Kesehatan</strong>. Apa yang ingin Anda ketahui?</p>
+      </div>
+    </div>
+
+    <!-- Quick Chips -->
+    <div class="popup-chips" id="popupChips">
+      <button class="popup-chip" data-q="Apa itu BPJS Kesehatan?">Apa itu BPJS?</button>
+      <button class="popup-chip" data-q="Berapa besar denda keterlambatan pembayaran iuran?">Denda terlambat</button>
+      <button class="popup-chip" data-q="Bagaimana prosedur jika kondisi gawat darurat?">Gawat darurat</button>
+      <button class="popup-chip" data-q="Apakah layanan gigi ditanggung BPJS?">Layanan gigi</button>
+    </div>
+
+    <!-- Input -->
+    <div class="popup-input-area">
+      <div class="popup-input-wrap">
+        <textarea
+          id="popupInput"
+          class="popup-input"
+          placeholder="Ketik pertanyaan BPJS..."
+          rows="1"
+          maxlength="500"
+          aria-label="Input pertanyaan"
+        ></textarea>
+        <button class="popup-send-btn" id="popupSendBtn" aria-label="Kirim" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

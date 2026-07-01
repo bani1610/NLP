@@ -1,14 +1,13 @@
-<!-- ---
+---
 title: BPJS Care Assistant
+emoji: 🏥
 colorFrom: blue
 colorTo: green
-sdk: gradio
-sdk_version: 5.33.0
-app_file: main.py
+sdk: docker
+app_port: 7860
 pinned: false
 license: mit
-hardware: a10g-small
---- -->
+---
 
 # BPJS Care Assistant — RAG Chatbot
 
@@ -71,18 +70,10 @@ chatbot_bpjs/
 
 ### `main.py` — Entry Point Aplikasi
 
-File utama yang dijalankan pertama kali saat aplikasi dimulai.
-Tugasnya mengorkestrasikan seluruh modul `src/` secara berurutan:
+Menjalankan server **FastAPI** via uvicorn (port 7860).
+Saat startup, `api.py` menginisialisasi RAG pipeline dan menyajikan frontend statis dari folder `frontend/`.
 
-1. Membaca konfigurasi dari `config.yaml`
-2. Memuat model embedding (Teknologi 2 — Transformer)
-3. Memuat atau membangun FAISS vector store (Teknologi 1 — RAG)
-4. Menginisialisasi LLM via Groq API
-5. Membangun RAG chain
-6. Menjalankan antarmuka Gradio
-
-> HuggingFace Spaces menjalankan `main.py` secara langsung karena dikonfigurasi
-> sebagai `app_file` di frontmatter README ini.
+> HuggingFace Spaces menjalankan container Docker yang memanggil `python main.py`.
 
 ---
 
@@ -404,6 +395,19 @@ Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kes
 ---
 
 ## Setup & Deployment
+
+### Deploy ke HuggingFace Spaces (Docker)
+
+1. Push seluruh repo ke Space HuggingFace (`punn78/chatbot_bpjs`)
+2. Pastikan frontmatter README memakai `sdk: docker` dan `app_port: 7860`
+3. Di **Settings → Secrets**, tambahkan:
+   ```
+   GROQ_API_KEY = <your_groq_api_key>
+   ```
+4. Tunggu build selesai (~5–15 menit pertama kali saat FAISS index dibuat)
+5. Buka URL Space → landing page + chat popup akan tampil
+
+**Tips startup cepat:** build FAISS index lokal dulu (`python main.py`), lalu commit folder `faiss_index_bpjs/` ke repo.
 
 ### Environment Variable
 Di HuggingFace Spaces → Settings → Secrets:
