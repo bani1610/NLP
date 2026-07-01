@@ -398,7 +398,11 @@ Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kes
 
 ### Deploy ke HuggingFace Spaces (Docker)
 
-1. Push seluruh repo ke Space HuggingFace (`punn78/chatbot_bpjs`)
+1. Push repo ke Space HuggingFace (`punn78/chatbot_bpjs`):
+   ```bash
+   git remote add space https://huggingface.co/spaces/punn78/chatbot_bpjs
+   git push space main
+   ```
 2. Pastikan frontmatter README memakai `sdk: docker` dan `app_port: 7860`
 3. Di **Settings → Secrets**, tambahkan:
    ```
@@ -407,7 +411,7 @@ Pengujian dilakukan dengan 10 pertanyaan representatif seputar regulasi BPJS Kes
 4. Tunggu build selesai (~5–15 menit pertama kali saat FAISS index dibuat)
 5. Buka URL Space → landing page + chat popup akan tampil
 
-**Tips startup cepat:** build FAISS index lokal dulu (`python main.py`), lalu commit folder `faiss_index_bpjs/` ke repo.
+**Catatan foto tim:** file di `frontend/images/` di-ignore agar push ke HF tidak ditolak. Foto bisa ditambahkan nanti (mis. deploy frontend ke Vercel).
 
 ### Environment Variable
 Di HuggingFace Spaces → Settings → Secrets:
